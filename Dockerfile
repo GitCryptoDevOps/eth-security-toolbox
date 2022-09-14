@@ -27,7 +27,7 @@ RUN sed -i 's/etheno/ethsec/g' /etc/sudoers
 
 RUN add-apt-repository ppa:sri-csl/formal-methods -y
 RUN apt-get update
-RUN apt-get install yices2 -y
+RUN apt-get install graphviz yices2 -y
 
 USER ethsec
 WORKDIR /home/ethsec
@@ -38,7 +38,7 @@ RUN mv examples etheno-examples
 
 # Install all and select the latest version of solc as the default
 # SOLC_VERSION is defined to a valid version to avoid a warning message on the output
-RUN pip3 --no-cache-dir install solc-select
+RUN pip3 --no-cache-dir install solc-select cbor2
 RUN solc-select install all && SOLC_VERSION=0.8.0 solc-select versions | head -n1 | xargs solc-select use
 
 RUN pip3 --no-cache-dir install slither-analyzer pyevmasm
