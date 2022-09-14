@@ -49,8 +49,6 @@ RUN git clone --depth 1 https://github.com/trailofbits/not-so-smart-contracts.gi
     git clone --depth 1 https://github.com/crytic/building-secure-contracts
 
 
-
-
 USER root
 COPY motd /etc/motd
 RUN echo '\ncat /etc/motd\n' >> /etc/bash.bashrc
