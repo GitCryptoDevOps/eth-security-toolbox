@@ -45,15 +45,15 @@ ENV PATH="${PATH}:${HOME}/.local/bin"
 RUN pip3 --no-cache-dir install solc-select
 RUN solc-select install all && SOLC_VERSION=0.8.0 solc-select versions | head -n1 | xargs solc-select use
 
-RUN pip3 --no-cache-dir install slither-analyzer pyevmasm
-RUN pip3 --no-cache-dir install --upgrade manticore
+RUN pip3 --no-cache-dir install pyevmasm
+RUN pip3 --no-cache-dir install manticore
 
 RUN git clone --depth 1 https://github.com/trailofbits/not-so-smart-contracts.git && \
     git clone --depth 1 https://github.com/trailofbits/rattle.git && \
     git clone --depth 1 https://github.com/crytic/building-secure-contracts
 
-
-
+#RUN pip uninstall -y slither-analyzer
+RUN pip install -y slither-analyzer
 
 USER root
 COPY motd /etc/motd
